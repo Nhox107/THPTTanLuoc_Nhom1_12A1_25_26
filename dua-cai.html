@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuyết Minh Làng Nghề - Tân Lược</title>
+    <style>
+        :root {
+            --primary-blue: #3498db;
+            --dark-slate: #0f172a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark-slate);
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        /* HEADER DẠNG BANNER */
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(15, 23, 42, 1)), 
+                        url('https://images.unsplash.com/photo-1505933332803-42ff3926b7fd?q=80&w=2000') no-repeat center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-banner h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .btn-back {
+            position: fixed; top: 30px; left: 30px;
+            padding: 10px 20px; background: var(--primary-blue);
+            color: white; text-decoration: none; border-radius: 5px;
+            font-weight: bold; z-index: 1000; transition: 0.3s;
+        }
+        .btn-back:hover { transform: translateX(-5px); background: #2980b9; }
+
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
+        }
+
+        .zigzag-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .zigzag-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content-box {
+            flex: 1;
+        }
+
+        .content-box h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .content-box h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin-top: 10px;
+        }
+
+        .image-box {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .image-box:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .zigzag-section, .zigzag-section:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-banner h1 { font-size: 2rem; }
+            .image-box img { height: 250px; }
+        }
+
+        footer { text-align: center; padding: 50px; opacity: 0.5; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <a href="diaphuong.html" class="btn-back">← Quay lại</a>
+
+    <header class="hero-banner">
+        <h1>Nghề Dưa Cải Muối</h1>
+        <p>Gói trọn hương vị phù sa và tâm huyết người Tân Lược</p>
+    </header>
+
+    <main class="container">
+
+        <section class="zigzag-section" style="animation-delay: 0.2s;">
+            <div class="content-box">
+                <h2>Lịch Sử Hình Thành</h2>
+                <p>
+                    Xuất hiện từ những năm 1960 - 1970. Ban đầu, người dân trồng cải tùa xại trên đất rẫy, khi thu hoạch rộ không bán hết nên họ nghĩ ra cách muối chua để dự trữ. Nhờ nguồn nước sông Hậu và bí quyết pha nước muối vừa vặn, dưa cải ở đây có độ giòn và màu vàng tự nhiên rất đẹp, từ đó tiếng lành đồn xa thành làng nghề.
+                </p>
+            </div>
+            <div class="image-box">
+                <img src="dua-cai1.jpg" alt="Lịch sử">
+            </div>
+        </section>
+
+        <section class="zigzag-section" style="animation-delay: 0.4s;">
+            <div class="content-box">
+                <h2>Bí Quyết Muối Dưa</h2>
+                <p>Nước muối dưa là sự kết hợp tinh tế giữa muối hạt, đường và một ít nước vo gạo. Cải được xếp ngăn nắp vào lu hoặc khạp, sau đó nén chặt bằng vỉ tre và đá cuội. Quá trình lên men tự nhiên diễn ra trong khoảng 3-5 ngày tùy vào điều kiện thời tiết.</p>
+            </div>
+            <div class="image-box">
+                <img src="dua-cai2.jpg" alt="Quá trình">
+            </div>
+        </section>
+
+        <section class="zigzag-section" style="animation-delay: 0.6s;">
+            <div class="content-box">
+                <h2>Thành Phẩm Đậm Đà</h2>
+                <p>Dưa cải muối đạt chuẩn sẽ có màu vàng ươm đẹp mắt, mùi thơm nồng đặc trưng và vị chua thanh dịu nhẹ. Đây không chỉ là món ăn hằng ngày mà còn là niềm tự hào trong mâm cỗ Tết của người dân phương Nam, gợi nhớ hương vị quê hương nguồn cội.</p>
+            </div>
+            <div class="image-box">
+                <img src="dua-cai3.jpg" alt="Thành phẩm">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Nhóm 1 - Lớp 12A1 - THPT TÂN LƯỢC</p>
+    </footer>
+
+</body>
+</html>

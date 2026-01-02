@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thành Viên Nhóm - N1 12A1</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1e3c72 0%, #0d1b2a 100%);
+            --primary-color: #2ecc71; 
+            --glow-color: rgba(46, 204, 113, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .back-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            display: flex;
+        }
+
+        .back-home:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .back-home svg { fill: white; }
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 { font-size: 2.2rem; letter-spacing: 2px; }
+        .header h2 { font-size: 1.4rem; opacity: 0.9; color: var(--primary-color); }
+        .container {
+            display: flex;
+            width: 95vw;
+            max-width: 1200px;
+            height: 500px;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .member-card {
+            position: relative;
+            height: 460px;
+            flex: 1;
+            min-width: 70px;
+            border-radius: 25px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .member-card:hover {
+            flex: 8;
+            min-width: 380px;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 50px var(--glow-color);
+        }
+        .vertical-name {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            writing-mode: vertical-rl;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .member-card:hover .vertical-name {
+            opacity: 0;
+            transform: translateX(-50%) translateY(30px);
+        }
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .member-card:hover .overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            object-fit: cover;
+            /*contain*/
+            box-shadow: 0 0 30px var(--glow-color);
+            transform: scale(0.5);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+        }
+
+        .member-card:hover .avatar { transform: scale(1); }
+        .info {
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.5s ease 0.3s;
+        }
+
+        .member-card:hover .info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .info h3 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 5px; }
+        .info .class-name { font-size: 1.1rem; color: #a7f3d0; margin-bottom: 15px; }
+        
+        .info .task {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-color);
+            max-width: 320px;
+        }
+
+        .c1, .c5 { background: linear-gradient(145deg, #2ecc71, #27ae60); }
+        .c2, .c6 { background: linear-gradient(145deg, #27ae60, #1e8449); }
+        .c3, .c7 { background: linear-gradient(145deg, #1e8449, #1e3c72); }
+        .c4, .c8 { background: linear-gradient(145deg, #2ecc71, #1e3c72); }
+
+        .footer { margin-top: 30px; font-size: 0.9rem; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+    <a href="CongViec_HTML.html" class="back-home">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+    </a>
+
+    <div class="header">
+        <h1>THPT TÂN LƯỢC</h1>
+        <h2>NHÓM 1 - 12A1 (2025-2026)</h2>
+    </div>
+
+    <div class="container">
+        <div class="member-card c1">
+            <div class="vertical-name">Tú Nguyên</div>
+            <div class="overlay">
+                <img src="avt_Nguyen.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Huỳnh Tú Nguyên</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c2">
+            <div class="vertical-name">Mỹ Tiên</div>
+            <div class="overlay">
+                <img src="avt_Tien.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Nguyễn Thị Mỹ Tiên</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c3">
+            <div class="vertical-name">Mỹ Hạnh</div>
+            <div class="overlay">
+                <img src="avt_Hanh.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Trần Lê Mỹ Hạnh</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c4">
+            <div class="vertical-name">Huỳnh Như</div>
+            <div class="overlay">
+                <img src="avt_Nhu.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Võ Thị Huỳnh Như</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c5">
+            <div class="vertical-name">Tấn Hưng</div>
+            <div class="overlay">
+                <img src="avt_Hung.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Đặng Tấn Hưng</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Trưởng Nhóm
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c6">
+            <div class="vertical-name">Gia Huy</div>
+            <div class="overlay">
+                <img src="avt_Huy.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Đinh Nguyễn Gia Huy</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Phó Nhóm
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c7">
+            <div class="vertical-name">Thanh Quý</div>
+            <div class="overlay">
+                <img src="avt_Quy.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Trần Nguyễn Thanh Quý</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="member-card c8">
+            <div class="vertical-name">Văn Đoàn</div>
+            <div class="overlay">
+                <img src="avt_Doan.jpg" alt="Avatar" class="avatar">
+                <div class="info">
+                    <h3>Lê Văn Đoàn</h3>
+                    <p class="class-name">Lớp 12A1</p>
+                    <p class="task">
+                        <strong>Chức vụ:</strong> Thành Viên
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Nhóm 1 - Lớp 12A1 - THPT TÂN LƯỢC</p>
+    </div>
+
+</body>
+</html>

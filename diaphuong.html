@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn Hóa & Làng Nghề - Tân Lược</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.15);
+            --primary-blue: #3498db;
+            --accent-green: #2ecc71;
+            --accent-gold: #f1c40f;
+            --text-gray: #cbd5e1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #0f172a 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .back-home {
+            position: fixed; top: 25px; left: 25px;
+            text-decoration: none; color: white;
+            background: var(--glass); padding: 12px 20px;
+            border-radius: 50px; border: 1px solid var(--border);
+            backdrop-filter: blur(10px); transition: 0.3s;
+            z-index: 100; display: flex; align-items: center; gap: 8px;
+        }
+        .back-home:hover { background: var(--primary-blue); transform: scale(1.05); }
+
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { font-size: 2.5rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        .content-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card-link { text-decoration: none; color: inherit; display: block; }
+        .full-width { grid-column: 1 / -1; }
+
+        .feature-card {
+            position: relative; height: 400px;
+            background: var(--glass); border-radius: 30px;
+            border: 1px solid var(--border); overflow: hidden;
+            backdrop-filter: blur(15px); transition: 0.4s;
+        }
+
+        .card-main {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 2; transition: 0.5s;
+        }
+        .card-main .icon { font-size: 4.5rem; margin-bottom: 15px; }
+
+        .card-details {
+            position: absolute; inset: 0; padding: 30px;
+            background: rgba(15, 23, 42, 0.98);
+            display: flex; flex-direction: column; justify-content: center;
+            opacity: 0; transform: translateY(100%);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+        }
+
+        .feature-card:hover .card-details { opacity: 1; transform: translateY(0); }
+        .feature-card:hover .card-main { opacity: 0; }
+
+        .card-details h3 { color: var(--primary-blue); margin-bottom: 10px; border-left: 4px solid var(--primary-blue); padding-left: 10px; }
+        .card-details ul { list-style: none; margin-top: 10px; }
+        .card-details ul li::before { content: "✦"; color: var(--accent-green); margin-right: 8px; }
+
+        .religion-container { position: relative; margin-top: 10px; }
+
+        .religion-card {
+            display: flex; align-items: center; padding: 35px;
+            border-radius: 30px; border: 1px solid var(--accent-gold);
+            background: rgba(241, 196, 15, 0.05); transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .religion-card h2 { color: var(--accent-gold); font-size: 2rem; margin-bottom: 5px; }
+        .religion-card .icon-large { font-size: 4.5rem; margin-right: 30px; }
+
+        .religion-dropdown {
+            max-height: 0; overflow: hidden; opacity: 0;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 0 0 30px 30px;
+            border: 1px solid rgba(241, 196, 15, 0.3); border-top: none;
+            transition: all 0.6s ease; padding: 0 30px;
+            margin-top: -15px;
+        }
+
+        .religion-container:hover .religion-dropdown {
+            max-height: 1500px; opacity: 1; padding: 40px 30px;
+        }
+
+        .religion-item {
+            display: flex; gap: 25px; margin-bottom: 30px;
+            padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .religion-item:last-child { border: none; margin-bottom: 0; }
+
+        .religion-item img {
+            width: 220px; height: 150px; object-fit: cover;
+            border-radius: 15px; border: 1px solid var(--accent-gold);
+        }
+
+        .item-info h4 { color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 10px; }
+        .item-info p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 12px; line-height: 1.6; }
+        
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .map-link:hover { color: var(--accent-gold); text-decoration: underline; }
+        .map-link svg { width: 18px; height: 18px; }
+
+        .video-btn {
+            display: inline-block; 
+            padding: 8px 16px;
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid #ff4757;
+            color: #ff4757; 
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold; 
+            font-size: 0.85rem; 
+            transition: 0.3s;
+        }
+        .video-btn:hover { background: #ff4757; color: white; box-shadow: 0 0 15px rgba(255, 71, 87, 0.4); }
+
+        .human-card {
+            display: flex; align-items: center; padding: 35px;
+            border-radius: 30px; border: 1px solid var(--accent-green);
+            background: rgba(46, 204, 113, 0.05); margin-top: 25px;
+        }
+        .human-card h2 { color: var(--accent-green); font-size: 2rem; }
+        .human-card .icon-large { font-size: 4.5rem; margin-right: 30px; }
+
+        @media (max-width: 768px) {
+            .religion-card, .human-card, .religion-item { flex-direction: column; text-align: center; }
+            .religion-item img { width: 100%; height: 200px; margin: 0 auto; }
+            .religion-card .icon-large, .human-card .icon-large { margin: 0 0 15px 0; }
+            .item-info { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="CongViec_HTML.html" class="back-home">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </a>
+
+    <div class="header">
+        <h1>Văn Hóa & Làng Nghề Tân Lược</h1>
+    </div>
+
+    <div class="content-container">
+        
+        <a href="dua-cai.html" class="card-link">
+            <div class="feature-card">
+                <div class="card-main">
+                    <div class="icon">🥬</div>
+                    <h2>Nghề Dưa Cải Muối</h2>
+                </div>
+                <div class="card-details">
+                    <h3>Dưa Cải Tân Lược</h3>
+                    <p>Nổi tiếng với độ giòn và vị chua thanh đặc trưng nhờ bí quyết lên men tự nhiên.</p>
+                    <ul>
+                        <li>Dưa cải muối truyền thống</li>
+                        <li>Cá lóc kho dưa cải</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+
+        <a href="khoai-lang.html" class="card-link">
+            <div class="feature-card">
+                <div class="card-main">
+                    <div class="icon">🍠</div>
+                    <h2>Nghề Khoai Lang</h2>
+                </div>
+                <div class="card-details">
+                    <h3>Đặc Sản Bình Tân</h3>
+                    <p>Quy trình trồng và sơ chế khoai lang tím Nhật xuất khẩu lớn nhất vùng.</p>
+                    <ul>
+                        <li>Khoai lang tím Nhật</li>
+                        <li>Sơ chế khoai lang xuất khẩu</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+
+        <a href="luc-binh.html" class="card-link">
+            <div class="feature-card">
+                <div class="card-main">
+                    <div class="icon">🧺</div>
+                    <h2>Đan Thảm Lục Bình</h2>
+                </div>
+                <div class="card-details">
+                    <h3>Thủ Công Mỹ Nghệ</h3>
+                    <p>Biến loài cây sông nước thành những tấm thảm và túi xách thủ công tinh xảo.</p>
+                    <ul>
+                        <li>Thảm lục bình xuất khẩu</li>
+                        <li>Giỏ xách mỹ nghệ</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+
+        <div class="religion-container full-width">
+            <div class="religion-card">
+                <div class="icon-large">🛕</div>
+                <div class="content">
+                    <h2>Tín Ngưỡng & Tôn Giáo</h2>
+                    <p>Rê chuột để xem các cơ sở thờ tự địa phương ↓</p>
+                </div>
+            </div>
+            
+            <div class="religion-dropdown">
+                
+                <div class="religion-item">
+                    <img src="chua-ong.jpg" alt="Chùa Ông Bảy">
+                    <div class="item-info">
+                        <h4>Chùa Ông Bảy (Bửu Sơn Tự)</h4>
+                        <p><strong>Vị trí:</strong> Trung tâm xã Tân Lược, gần chợ Tân Lược và Quốc lộ 54.</p>
+                        <p>Ngôi chùa mang đậm nét kiến trúc tôn giáo truyền thống của người dân Nam Bộ. Đây là nơi thờ tự trang nghiêm, không gian tĩnh lặng, thường xuyên tổ chức các hoạt động cúng bái vào các ngày rằm hoặc lễ Tết.</p>
+                        
+                        <a href="https://www.youtube.com/watch?v=FlB_S3oulLQ" target="_blank" class="video-btn">▶ Xem video thuyết minh</a>
+                    </div>
+                </div>
+
+                <div class="religion-item">
+                    <img src="cong-giao.webp" alt="Nhà thờ Tân Lược">
+                    <div class="item-info">
+                        <h4>Họ Đạo Tân Lược (Giáo xứ Tân Lược)</h4>
+                        <p><strong>Vị trí:</strong> QL54, Xã Tân Lược, Huyện Bình Tân, Tỉnh Vĩnh Long.</p>
+                        <p>Ngôi nhà thờ khang trang hiện nay được hoàn thành giai đoạn 1997-2004, trở thành biểu tượng đức tin. Giáo dân tại đây phần lớn làm nghề nông, sống hài hòa và cần cù "Lao động là cầu nguyện".</p>
+                        
+                        <a href="https://www.youtube.com/watch?v=eRtjQ21FL3U" target="_blank" class="video-btn">▶ Xem video thuyết minh</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <a href="con-nguoi.html" class="card-link full-width">
+            <div class="human-card">
+                <div class="icon-large">🤝</div>
+                <div class="content">
+                    <h2>Con Người Tân Lược</h2>
+                    <p>Người dân Tân Lược hiền hòa, mộc mạc và giàu lòng hiếu khách. Đây là cốt lõi tạo nên sức sống cho các làng nghề truyền thống lâu đời.</p>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <footer style="margin-top: 50px; opacity: 0.5; font-size: 0.8rem; text-align: center;">
+        <p>© 2026 Nhóm 1 - Lớp 12A1 - THPT TÂN LƯỢC</p>
+    </footer>
+
+</body>
+</html>

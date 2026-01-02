@@ -1,0 +1,311 @@
+<!DOCTYPE html> 
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trường THPT Tân Lược - Dự Án Quê Hương</title>
+    <style>
+        
+        :root /*Khai báo biến*/ {
+            --primary-color: #1e3c72; /*Biến primary-color khai báo theo mã màu HEX*/
+            --secondary-color: #2a5298; /*Biến secondary-color khai báo theo mã màu HEX*/
+            --gold-color: #ffd700; /*Biến gold-color khai báo theo mã màu HEX*/
+            --bg-body: #f8fafc; /*Biến bg-color (bg = background) khai báo theo mã màu HEX*/
+            --text-dark: #2d3436; /*Biến text-dark khai báo theo mã màu HEX*/
+            --shadow: 0 4px 20px rgba(0,0,0,0.08); /*Biến shadow (khai báo màu viền) khai báo theo mã màu HEX*/
+        }
+
+        body /*Thiết lập CSS cho thẻ body*/ { 
+            font-family: 'Segoe UI', Roboto, sans-serif; /*Thay font chữ cho toàn bộ body*/
+            margin: 0; /*Khoảng cách giữa viền và nội dung = 0*/
+            background: var(--bg-body);  /*Thay phong nền bằng biến bg-body (đã khai báo từ root)*/
+            color: var(--text-dark); /*Thay màu chữ bằng biến text-dark (đã khai báo từ root)*/
+            line-height: 1.8;
+        }
+
+        /*Thiết lập thuộc tích cho class hero-banner*/
+        .hero-banner {
+            position: relative; /*position (định vị vị trí); relative (định vị tương đối)*/
+            height: 500px; /*Chiều cao 500px*/
+            overflow: hidden; /*overflow (khi nội dung bị tràn); hidden (ẩn những nội dung bị tràn)*/
+        }
+        /*Thiết lập thuộc tích cho thẻ img khi nằm trong class hero-banner*/
+        .hero-banner img {
+            width: 100%; /*Chiếm toàn bộ chiều rộng*/
+            height: 100%; /*Chiếm toàn bộ chiều cao*/
+            object-fit: cover; /*object-fit (chia tỉ lệ); cover (căn chỉnh vừa với chiều rộng thực tế)*/
+            filter: brightness(0.9); /*filter (bộ lọc); brightness (chỉnh sáng lên một khoảng {0.9})*/
+        }
+
+        /*Thiết lập thuộc tích class back-home*/
+        .back-home {
+            position: absolute; /*postion (căn chỉnh vị trí); absolute (vị trí tuyệt đối/cố định)*/
+            top: 30px; /*Cách ở trên 30px*/
+            left: 30px; /*Cách trái 30px*/
+            background: white; /*Màu nền trắng*/
+            padding: 12px; /*Cách toàn bộ khung chứa 12px*/
+            border-radius: 50%; /*Độ cong đường viền là 50%*/
+            display: flex; /*display (màn hình); flex (co dãn)*/
+            box-shadow: var(--shadow); /*box-shadow (độ đổ bóng); lấy giá trị từ biến --shadow đã khai báo từ */
+            transition: 0.3s; /*transition (hiệu ứng chuyển động); được thực hiện trong 0.3s*/
+            z-index: 10; /*z-index (đè nội dung); số càng lớn ưu tiên hiển thị khi bị đè bởi nội dung khác*/
+        }
+
+        /*Thiết lập class back-home; hover (khi con trỏ chuột di vào)*/
+        .back-home:hover 
+        { 
+            background: var(--gold-color); /*Đổi màu nền class lại thành biến gold-color*/
+            transform: translateY(-3px);  /*transform (hiệu ứng); translateY (đi lên một khoảng) 3px*/
+        }
+
+        /*Thiết lập CSS cho thẻ main*/
+        main { 
+            max-width: 1100px; /*Độ rộng tối đa của thẻ 1100px*/
+            margin: -50px auto 50px;  /*Căn chỉnh nội dung so với -50px (phía trên); auto (trái, phải tự động căn giữa); 50px (phía dưới)*/
+            position: relative; /*vị trí tương đối*/
+            padding: 0 20px; /*Cách toàn bộ nội dung so với 0px (phía trên), 20px (phía dưới)*/
+        }
+
+
+        /*Thiết lập class card*/
+        .card {
+            background: #fff; /*Màu nền thành #fff {theo mã màu HEX}*/
+            padding: 40px; /*Cách toàn bộ 40px*/
+            border-radius: 20px; /*Độ cong 20px*/
+            box-shadow: var(--shadow); /*Độ bóng*/
+            margin-bottom: 30px; /*margin-bottom (cách dưới) 30px*/
+        }
+
+        /*Thiết lập CSS cho thẻ h2*/
+        h2 { 
+            color: var(--primary-color); 
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center; /*sắp xếp nội dung căn giữa theo chiều */
+        }
+        /*Thiết lập thẻ h2; before (lúc đầu)*/
+        h2::before {
+            content: ""; /*content (nội dung của thẻ) rỗng*/
+            width: 6px;
+            height: 30px;
+            background: var(--primary-color);
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+
+        /*Thiết lập class intro-grid*/
+        .intro-grid {
+            display: grid; /*Căn nội dung theo hàng*/
+            grid-template-columns: 1fr 1fr; /*Chia khung thành 2 phần bằng nhau*/
+            gap: 30px; /*Nội dung cách toàn bộ khung 30px*/
+        }
+
+        /*Thiết lập class tab-container*/
+        .tabs-container { 
+            margin-top: 20px; /*Cách phía trên 20px*/
+        }
+        .tabs-nav { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: -1px; 
+        }
+
+        /*Thiết lập thẻ label trong class tabs-nav*/
+        .tabs-nav label {
+            padding: 15px 25px;
+            background: #edf2f7;
+            cursor: pointer; /*Thay đổi hình dạng của con trỏ chuột*/
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        /*Thiết lập thẻ input trong class-container*/
+        .tabs-container input { display: none; }
+        
+        .tab-content {
+            display: none;
+            background: #fff;
+            padding: 30px;
+            border-radius: 0 15px 15px 15px;
+            border: 1px solid #edf2f7;
+            animation: slideUp 0.4s ease;
+        }
+
+        /*Thiết lập id tương ứng với các class .nav-tab[1]*/
+        #tab1:checked ~ .nav-tab1, 
+        #tab2:checked ~ .nav-tab2,
+        #tab3:checked ~ .nav-tab3, 
+        #tab4:checked ~ .nav-tab4 {
+            background: lightblue;
+            color: white;
+        }
+
+        #tab1:checked ~ .content1, #tab2:checked ~ .content2,
+        #tab3:checked ~ .content3, #tab4:checked ~ .content4 { display: block; }
+
+        
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .class-group h4 { margin-top: 0; color: var(--secondary-color); }
+
+        
+        .content-img { width: 100%; border-radius: 15px; margin-top: 20px; box-shadow: var(--shadow); }
+        .video-wrapper { border-radius: 15px; overflow: hidden; margin: 20px 0; }
+
+
+        /*keyframes (thiết lập hiệu ứng) cho phần tử slideUp*/
+        @keyframes slideUp {
+            from { /*from (trạng thái bắt đầu)*/
+                opacity: 0; /*opacity độ trong suốt = 0 (hoàn toàn trong suốt)*/
+                transform: translateY(10px); 
+            } 
+            /*to (Trạng trái kết thúc)*/
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+
+        /*Tất cả nội dung, hình ảnh đều không vượt quá 768px*/
+        @media (max-width: 768px) {
+            .intro-grid { grid-template-columns: 1fr; }
+            .tabs-nav { flex-wrap: wrap; }
+            .tabs-nav label { flex: 1 1 40%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-banner">
+        <a href="CongViec_HTML.html" class="back-home" title="Về trang chủ">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+        </a>
+        <img src="THPT_TanLuoc_Bia2.png" alt="Trường THPT Tân Lược">
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Lịch sử & Hình thành</h2>
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p>Trường THPT Tân Lược thành lập năm 2007, tách ra từ khối cấp 3 của trường Trung học cấp 2-3 Tân Lược. Đây là nhu cầu tất yếu nhằm đáp ứng nhu cầu học tập ngày càng cao của con em địa phương tại vùng đất Bình Tân, tỉnh Vĩnh Long.</p>
+                    <p>Trải qua gần 20 năm phát triển, nhà trường đã trở thành cái nôi nuôi dưỡng nhiều thế hệ tài năng, luôn đi đầu trong các phong trào sáng tạo và giáo dục của tỉnh.</p>
+                </div>
+                <div class="intro-staff" style="background: #f8fafc; padding: 20px; border-radius: 12px;">
+                    <strong>Ban Giám Hiệu qua các thời kỳ:</strong>
+                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                        <li>Thầy Trương Công Danh (2007-2018 & 2022-2024)</li>
+                        <li>Thầy Nguyễn Bảo Luân (2018-2022)</li>
+                        <li>Cô Quách Xuân Đào (2025 - Hiện tại)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Thông tin & Phong trào</h2>
+            <div class="tabs-container">
+                <input type="radio" name="main-tab" id="tab1" checked>
+                <input type="radio" name="main-tab" id="tab2">
+                <input type="radio" name="main-tab" id="tab3">
+                <input type="radio" name="main-tab" id="tab4">
+
+                <div class="tabs-nav">
+                    <label for="tab1" class="nav-tab1">Lớp học</label>
+                    <label for="tab2" class="nav-tab2">Giáo viên</label>
+                    <label for="tab3" class="nav-tab3">Câu lạc bộ</label>
+                    <label for="tab4" class="nav-tab4">Bản tin</label>
+                </div>
+
+                <div class="tab-content content1">
+                    <h3>Hệ thống đào tạo 2025-2026</h3>
+                    <p>Nhà trường hiện có <strong>27 lớp</strong> với tổng số <strong>1054 học sinh</strong>.</p>
+                    <div class="class-grid">
+                        <div class="class-group">
+                            <h4>Khối 10 (8 lớp)</h4>
+                            <p>10A1-A4, 10B1, 10C1-C2, 10D1</p>
+                        </div>
+                        <div class="class-group">
+                            <h4>Khối 11 (10 lớp)</h4>
+                            <p>11A1-A4, 11B1-B2, 11C1-C3, 11D1</p>
+                        </div>
+                        <div class="class-group">
+                            <h4>Khối 12 (9 lớp)</h4>
+                            <p>12A1-A3, 12B1-B2, 12C1-C3, 12D1</p>
+                        </div>
+                    </div>
+                    <img src="lop1.png" class="content-img" alt="Hình ảnh lớp học">
+                </div>
+
+                <div class="tab-content content2">
+                    <h3>Đội ngũ sư phạm</h3>
+                    <p>Với 70 cán bộ giáo viên, nhân viên tận tâm, nhà trường cam kết mang đến môi trường giáo dục chất lượng nhất.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <ul style="margin: 0;">
+                            <li>Phương pháp dạy linh hoạt, đổi mới.</li>
+                            <li>Tận tâm, luôn lắng nghe học sinh.</li>
+                            <li>Công bằng, minh bạch trong đánh giá.</li>
+                        </ul>
+                        <ul style="margin: 0;">
+                            <li>Trình độ chuyên môn đạt chuẩn & trên chuẩn.</li>
+                            <li>Nhiệt huyết với các hoạt động phong trào.</li>
+                        </ul>
+                    </div>
+                    <img src="giao_vien1.png" class="content-img" alt="Tập thể giáo viên">
+                </div>
+
+                <div class="tab-content content3">
+                    <h3>Hoạt động ngoại khóa</h3>
+                    <div class="class-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="award-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+                            <h4>CLB Truyền Thông</h4>
+                            <a href="https://www.facebook.com/profile.php?id=61566383554854" target="_blank">Xem Fanpage →</a>
+                        </div>
+                        <div class="award-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+                            <h4>CLB Lập Trình</h4>
+                            <a href="https://www.facebook.com/profile.php?id=61583500006313" target="_blank">Xem Fanpage →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content content4">
+                    <article class="award-card" style="background: #fffdf0; border: 2px gold solid; padding: 20px; border-radius: 15px;">
+                        <span style="background: gold; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">🏆 THÀNH TÍCH MỚI NHẤT</span>
+                        <h4 style="margin: 15px 0;">Dự án InfernoConnect - Giải Ba Cuộc thi Sáng tạo lần thứ 14</h4>
+                        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <img src="BanTin_img1.jpg" style="width: 32%; height: 150px; object-fit: cover; border-radius: 8px;">
+                            <img src="BanTin_img2.jpg" style="width: 32%; height: 150px; object-fit: cover; border-radius: 8px;">
+                            <img src="BanTin_img3.jpg" style="width: 32%; height: 150px; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="video-wrapper">
+                            <video controls style="width: 100%;">
+                                <source src="BanTin1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <p style="font-style: italic; font-size: 0.9rem; color: #666;">* Phóng sự về hành trình chinh phục chung khảo cấp Tỉnh.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="opacity: 0.7; font-size: 0.8rem;">© 2026 Nhóm 1 - Lớp 12A1 - THPT TÂN LƯỢC</p>
+    </footer>
+
+</body>
+</html>

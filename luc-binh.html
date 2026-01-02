@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuyết Minh Làng Nghề - Tân Lược</title>
+    <style>
+        :root {
+            --primary-blue: #3498db;
+            --dark-slate: #0f172a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark-slate);
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+        .hero-banner {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(15, 23, 42, 1)), 
+                        url('https://images.unsplash.com/photo-1505933332803-42ff3926b7fd?q=80&w=2000') no-repeat center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-banner h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .btn-back {
+            position: fixed; top: 30px; left: 30px;
+            padding: 10px 20px; background: var(--primary-blue);
+            color: white; text-decoration: none; border-radius: 5px;
+            font-weight: bold; z-index: 1000; transition: 0.3s;
+        }
+        .btn-back:hover { transform: translateX(-5px); background: #2980b9; }
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
+        }
+
+        .zigzag-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .zigzag-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content-box {
+            flex: 1;
+        }
+
+        .content-box h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .content-box h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            margin-top: 10px;
+        }
+
+        .image-box {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .image-box:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .zigzag-section, .zigzag-section:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-banner h1 { font-size: 2rem; }
+            .image-box img { height: 250px; }
+        }
+
+        footer { text-align: center; padding: 50px; opacity: 0.5; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <a href="diaphuong.html" class="btn-back">← Quay lại</a>
+
+    <header class="hero-banner">
+        <h1>Nghề Đan Lục </h1>
+        <p>Những nghệ nhân, tác phẩm nghệ thuật</p>
+    </header>
+
+    <main class="container">
+
+        <section class="zigzag-section" style="animation-delay: 0.2s;">
+            <div class="content-box">
+                <h2>Lịch Sử Hình Thành</h2>
+                <p>
+                    Rộ lên từ khoảng năm 2000 khi phong trào sử dụng sản phẩm thiên nhiên phát triển. Lục bình trên sông Hậu rất dồi dào, từ một loại "cỏ rác" gây cản trở giao thông, người dân đã biến chúng thành nguyên liệu sản xuất hàng xuất khẩu.
+                </p>
+            </div>
+            <div class="image-box">
+                <img src="luc-binh1.webp" alt="Lịch sử">
+            </div>
+        </section>
+
+        <section class="zigzag-section" style="animation-delay: 0.4s;">
+            <div class="content-box">
+                <h2>Bí Quyết Nguyên Liệu</h2>
+                <p>
+                    Điểm mấu chốt là quy trình "phơi đủ 3 nắng" để sợi lục bình đạt độ dai tuyệt đối và màu vàng rơm sáng, cùng kỹ thuật đan tay "kín kẽ, đều múi" giúp sản phẩm giữ form chắc chắn, không bị biến dạng hay ẩm mốc.
+                </p>
+            </div>
+            <div class="image-box">
+                <img src="luc-binh2.webp" alt="Quá trình">
+            </div>
+        </section>
+
+        <section class="zigzag-section" style="animation-delay: 0.6s;">
+            <div class="content-box">
+                <h2>Thành Phẩm Bắt Mắt</h2>
+                <p>
+                    Thảm lục bình, giỏ xách, khay đựng đồ, đồ mỹ nghệ trang trí nội thất cho các khách sạn, resort.
+                </p>
+            </div>
+            <div class="image-box">
+                <img src="luc-binh3.webp" alt="Thành phẩm">
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Nhóm 1 - Lớp 12A1 - THPT TÂN LƯỢC</p>
+    </footer>
+
+</body>
+</html>
